@@ -26,6 +26,9 @@ seoMeta:
   # or generate one from the first slide if not found.
   ogImage: auto
   # ogImage: https://cover.sli.dev
+# Enable D2 addon
+addons:
+  - ./presi-workers-as-glue/addon-d2
 ---
 
 # Welcome to Slidev
@@ -552,6 +555,52 @@ database "MySql" {
 </div>
 
 Learn more: [Mermaid Diagrams](https://sli.dev/features/mermaid) and [PlantUML Diagrams](https://sli.dev/features/plantuml)
+
+---
+
+# D2 Diagrams
+
+You can also create beautiful diagrams using D2 syntax with our custom addon:
+
+<script setup>
+const simpleD2 = `x -> y: Hello World
+y -> z: How are you?
+z -> x: I'm fine!`
+
+const databaseD2 = `users: {
+  shape: sql_table
+  id: int {constraint: primary_key}
+  name: string
+  email: string
+}
+
+posts: {
+  shape: sql_table
+  id: int {constraint: primary_key}
+  user_id: int {constraint: foreign_key}
+  title: string
+  content: text
+}
+
+users.id -> posts.user_id`
+</script>
+
+<div class="grid grid-cols-2 gap-5 pt-4 -mb-6">
+
+<D2Diagram
+  :code="simpleD2"
+  max-height="300px"
+/>
+
+<D2Diagram
+  :code="databaseD2"
+  :scale="0.7"
+  max-height="350px"
+/>
+
+</div>
+
+D2 provides a powerful way to create technical diagrams with clean syntax!
 
 ---
 foo: bar
