@@ -5,11 +5,11 @@
     "moduleResolution": "Bundler",
     "strict": true,
     "skipLibCheck": true,
-    "lib": ["ESNext"],
-    "types": ["worker-configuration.d.ts"]
+    "lib": ["ESNext"]
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "worker-configuration.d.ts"
   ],
   "exclude": [
     "node_modules",
