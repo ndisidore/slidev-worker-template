@@ -13,7 +13,7 @@
     "@slidev/cli": "^52.1.0",
     "@slidev/theme-default": "latest",
     "@slidev/theme-seriph": "latest",
-    "@terrastruct/d2": "^0.1.23",
+    "@terrastruct/d2": "^0.1.33",
     "vue": "^3.5.18"
   },
   "devDependencies": {
