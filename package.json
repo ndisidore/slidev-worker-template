@@ -19,6 +19,6 @@
   "devDependencies": {
     "playwright-chromium": "^1.54.2",
     "typescript": "^5.9.2",
-    "wrangler": "^4.28.1"
+    "wrangler": "^4.32.0"
   }
 }
