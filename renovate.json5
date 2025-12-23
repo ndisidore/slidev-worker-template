@@ -1,130 +1,161 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended",
-    "schedule:weekly",
-    ":maintainLockFilesWeekly",
-    ":enableVulnerabilityAlerts"
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: [
+    'config:recommended',
+    'schedule:weekly',
+    ':maintainLockFilesWeekly',
+    ':enableVulnerabilityAlerts',
   ],
-  "timezone": "America/New_York",
-  "schedule": ["before 9am on monday"],
-  "reviewers": ["ndisidore"],
-  "assignees": ["ndisidore"],
-  "labels": ["dependencies"],
-  "prConcurrentLimit": 10,
-  "prHourlyLimit": 5,
-
-  // Commit message configuration to match previous dependabot style
-  "commitMessagePrefix": "deps:",
-  "commitMessageAction": "bump",
-
-  // Package rules for grouping dependencies
-  "packageRules": [
-    // Slidev ecosystem group
-    {
-      "groupName": "slidev",
-      "matchPackagePatterns": ["^@slidev/"],
-      "matchManagers": ["npm"],
-      "commitMessagePrefix": "deps(slidev):"
-    },
-
-    // Vue ecosystem group
-    {
-      "groupName": "vue",
-      "matchPackagePatterns": ["^vue$", "^@vue/", "^vue-"],
-      "matchManagers": ["npm"],
-      "commitMessagePrefix": "deps(vue):"
-    },
-
-    // D2 diagram dependencies
-    {
-      "groupName": "d2-diagrams",
-      "matchPackagePatterns": ["^@terrastruct/"],
-      "matchManagers": ["npm"],
-      "commitMessagePrefix": "deps(d2):"
-    },
-
-    // Cloudflare/Wrangler group
-    {
-      "groupName": "cloudflare",
-      "matchPackagePatterns": ["^wrangler$", "^@cloudflare/"],
-      "matchManagers": ["npm"],
-      "commitMessagePrefix": "deps(cloudflare):"
-    },
-
-    // TypeScript group
-    {
-      "groupName": "typescript",
-      "matchPackagePatterns": ["^typescript$", "^@types/"],
-      "matchManagers": ["npm"],
-      "commitMessagePrefix": "deps(typescript):"
-    },
-
-    // Testing/Playwright group
-    {
-      "groupName": "playwright",
-      "matchPackagePatterns": ["^playwright", "^@playwright/"],
-      "matchManagers": ["npm"],
-      "commitMessagePrefix": "deps(playwright):"
-    },
-
-    // Development dependencies - lower priority
-    {
-      "matchDepTypes": ["devDependencies"],
-      "matchManagers": ["npm"],
-      "commitMessagePrefix": "deps(deps-dev):"
-    },
-
-    // Production dependencies
-    {
-      "matchDepTypes": ["dependencies"],
-      "matchManagers": ["npm"],
-      "commitMessagePrefix": "deps(deps):"
-    },
-
-    // Peer dependencies
-    {
-      "matchDepTypes": ["peerDependencies"],
-      "matchManagers": ["npm"],
-      "enabled": false  // Don't auto-update peer deps, they require careful consideration
-    },
-
-    // GitHub Actions
-    {
-      "groupName": "github-actions",
-      "matchManagers": ["github-actions"],
-      "commitMessagePrefix": "ci:",
-      "automerge": false
-    },
-
-    // Pin major versions for stability on certain critical packages
-    {
-      "matchPackageNames": ["typescript"],
-      "matchManagers": ["npm"],
-      "separateMajorMinor": true
-    },
-
-    // Auto-merge minor/patch updates for low-risk dev dependencies
-    {
-      "matchDepTypes": ["devDependencies"],
-      "matchUpdateTypes": ["minor", "patch"],
-      "matchManagers": ["npm"],
-      "automerge": true,
-      "automergeType": "pr",
-      "platformAutomerge": true
-    }
+  timezone: 'America/New_York',
+  schedule: [
+    'before 9am on monday',
   ],
-
-  // Additional paths to scan for package managers
-  "ignorePaths": [
-    "**/node_modules/**",
-    "**/bower_components/**"
+  reviewers: [
+    'ndisidore',
   ],
-
-  // Enable updates for addon-d2 subdirectory
-  "includePaths": [
-    "package.json",
-    "addon-d2/package.json",
-    ".github/workflows/**"
-  ]
+  assignees: [
+    'ndisidore',
+  ],
+  labels: [
+    'dependencies',
+  ],
+  prConcurrentLimit: 10,
+  prHourlyLimit: 5,
+  commitMessagePrefix: 'deps:',
+  commitMessageAction: 'bump',
+  packageRules: [
+    {
+      groupName: 'slidev',
+      matchManagers: [
+        'npm',
+      ],
+      commitMessagePrefix: 'deps(slidev):',
+      matchPackageNames: [
+        '/^@slidev//',
+      ],
+    },
+    {
+      groupName: 'vue',
+      matchManagers: [
+        'npm',
+      ],
+      commitMessagePrefix: 'deps(vue):',
+      matchPackageNames: [
+        '/^vue$/',
+        '/^@vue//',
+        '/^vue-/',
+      ],
+    },
+    {
+      groupName: 'd2-diagrams',
+      matchManagers: [
+        'npm',
+      ],
+      commitMessagePrefix: 'deps(d2):',
+      matchPackageNames: [
+        '/^@terrastruct//',
+      ],
+    },
+    {
+      groupName: 'cloudflare',
+      matchManagers: [
+        'npm',
+      ],
+      commitMessagePrefix: 'deps(cloudflare):',
+      matchPackageNames: [
+        '/^wrangler$/',
+        '/^@cloudflare//',
+      ],
+    },
+    {
+      groupName: 'typescript',
+      matchManagers: [
+        'npm',
+      ],
+      commitMessagePrefix: 'deps(typescript):',
+      matchPackageNames: [
+        '/^typescript$/',
+        '/^@types//',
+      ],
+    },
+    {
+      groupName: 'playwright',
+      matchManagers: [
+        'npm',
+      ],
+      commitMessagePrefix: 'deps(playwright):',
+      matchPackageNames: [
+        '/^playwright/',
+        '/^@playwright//',
+      ],
+    },
+    {
+      matchDepTypes: [
+        'devDependencies',
+      ],
+      matchManagers: [
+        'npm',
+      ],
+      commitMessagePrefix: 'deps(deps-dev):',
+    },
+    {
+      matchDepTypes: [
+        'dependencies',
+      ],
+      matchManagers: [
+        'npm',
+      ],
+      commitMessagePrefix: 'deps(deps):',
+    },
+    {
+      matchDepTypes: [
+        'peerDependencies',
+      ],
+      matchManagers: [
+        'npm',
+      ],
+      enabled: false,
+    },
+    {
+      groupName: 'github-actions',
+      matchManagers: [
+        'github-actions',
+      ],
+      commitMessagePrefix: 'ci:',
+      automerge: false,
+    },
+    {
+      matchPackageNames: [
+        'typescript',
+      ],
+      matchManagers: [
+        'npm',
+      ],
+      separateMajorMinor: true,
+    },
+    {
+      matchDepTypes: [
+        'devDependencies',
+      ],
+      matchUpdateTypes: [
+        'minor',
+        'patch',
+      ],
+      matchManagers: [
+        'npm',
+      ],
+      automerge: true,
+      automergeType: 'pr',
+      platformAutomerge: true,
+    },
+  ],
+  ignorePaths: [
+    '**/node_modules/**',
+    '**/bower_components/**',
+  ],
+  includePaths: [
+    'package.json',
+    'addon-d2/package.json',
+    '.github/workflows/**',
+  ],
 }
