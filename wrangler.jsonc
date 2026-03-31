@@ -1,8 +1,10 @@
 {
-  "name": "presi-workers-as-glue",
+  "name": "slidev-worker-template",
   "main": "src/index.ts",
   "compatibility_date": "2025-08-01",
-  "compatibility_flags": ["nodejs_compat"],
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS"
