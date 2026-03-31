@@ -1,5 +1,5 @@
 {
-  "name": "presi-workers-as-glue",
+  "name": "slidev-worker-template",
   "private": true,
   "scripts": {
     "build": "slidev build",

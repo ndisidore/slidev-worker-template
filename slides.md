@@ -28,7 +28,7 @@ seoMeta:
   # ogImage: https://cover.sli.dev
 # Enable D2 addon
 addons:
-  - ./presi-workers-as-glue/addon-d2
+  - ./slidev-worker-template/addon-d2
 ---
 
 # Welcome to Slidev
